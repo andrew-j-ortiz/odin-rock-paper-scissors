@@ -5,4 +5,11 @@ function getComputerChoice() {
     return strChoices[intNumber];
 };
 
-console.log(getComputerChoice());
+// get human's choice
+function getHumanChoice() {
+    const strHumanChoice = prompt("Choose rock, paper, or scissors:");
+    console.log(strHumanChoice)
+    return strHumanChoice;
+};
+
+getHumanChoice();
