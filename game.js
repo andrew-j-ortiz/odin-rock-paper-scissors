@@ -40,6 +40,24 @@ function playRound(humanChoice, computerChoice) {
     }
 };
 
+// DOM elements
+const domRock = document.getElementById("rock");
+const domPaper = document.getElementById("paper");
+const domScissors = document.getElementById("scissors");
+
+// Event listeners
+domRock.addEventListener("click", () => {
+    playRound("rock", getComputerChoice())
+})
+
+domPaper.addEventListener("click", () => {
+    playRound("paper", getComputerChoice())
+})
+
+domScissors.addEventListener("click", () => {
+    playRound("scissors", getComputerChoice())
+})
+
 // play game
 function playGame() {
     // keep track of the player's score
@@ -73,4 +91,4 @@ function playGame() {
     };
 };
     
-playGame();
+// playGame();
