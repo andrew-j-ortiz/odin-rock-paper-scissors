@@ -52,7 +52,6 @@ function playRound(humanChoice, computerChoice) {
 const domRock = document.getElementById("rock");
 const domPaper = document.getElementById("paper");
 const domScissors = document.getElementById("scissors");
-const domScoreBoard = document.getElementById("scoreboard")
 const domMessage = document.getElementById("message");
 
 // Event listeners

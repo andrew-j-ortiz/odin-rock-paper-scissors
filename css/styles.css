@@ -1,4 +1,59 @@
+/**
+* {
+    border: 1px red solid
+}
+**/
+
 body {
+    background-color: #113B50;
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game_container {
+    background-color: #A2BBC7;
+    border: 2px solid black;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.announcer {
     display: flex;
     justify-content: center;
+}
+
+.button_container {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.button {
+    width: 100px;
+    height: 30px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.score_board {
+    display: flex;
+    justify-content: space-between;
+    background-color: #D0DEE4;
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.score_board_box {
+    text-align: center;
+    width: 150px;
+}
+
+.score_board_box > p {
+    font-size: 1.5rem;
 }
