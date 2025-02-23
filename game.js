@@ -5,12 +5,6 @@ function getComputerChoice() {
     return strChoices[numNumber];
 };
 
-// get human's choice
-function getHumanChoice() {
-    const strHumanChoice = prompt("Choose rock, paper, or scissors:").toLowerCase();
-    return strHumanChoice;
-};
-
 // play round
 function playRound(humanChoice, computerChoice) {
     if (humanChoice == "rock" && computerChoice == "scissors") {
@@ -45,6 +39,7 @@ const domScissors = document.getElementById("scissors");
 const domMessage = document.getElementById("message");
 const domPlayerScore = document.getElementById("playerScore");
 const domComputerScore = document.getElementById("computerScore")
+const domRound = document.getElementById("round")
 
 // Event listeners
 domRock.addEventListener("click", () => {
@@ -61,49 +56,31 @@ domScissors.addEventListener("click", () => {
 
 // play game
 function playGame(userChoice) {
-    const boolPlayerWon = playRound(userChoice, getComputerChoice())
-
     const intPlayerScore = Number(domPlayerScore.textContent) + 1
-    const intComputerScore = Number(domComputerScore.textContent) + 1 
+    const intComputerScore = Number(domComputerScore.textContent) + 1
+    const intRound = Number(domRound.textContent) + 1
 
-    if (boolPlayerWon === true) {
-        domPlayerScore.textContent = intPlayerScore
-    } else if (boolPlayerWon === false) {
-        domComputerScore.textContent = intComputerScore
+    if (Number(domRound.textContent) < 5) {
+        const boolPlayerWon = playRound(userChoice, getComputerChoice())
+
+        if (boolPlayerWon === true) {
+            domPlayerScore.textContent = intPlayerScore
+        } else if (boolPlayerWon === false) {
+            domComputerScore.textContent = intComputerScore
+        }
+        domRound.textContent = intRound
+    }
+
+    if (Number(domRound.textContent) === 5) {
+        if (Number(domPlayerScore.textContent) > Number(domComputerScore.textContent)) {
+            domMessage.textContent = "Game over! You Win!"
+        } else if (Number(domPlayerScore.textContent) < Number(domComputerScore.textContent)) {
+            domMessage.textContent = "Game over! Computer wins!"
+        } else {
+            domMessage.textContent = "Game over! It's a tie..."
+        }
+        setTimeout(()=>{
+            location.reload()
+        }, 5000)
     }
 }
-
-// play game
-function playGameOld() {
-    // keep track of the player's score
-    let numHumanScore = 0;
-    let numComputerScore = 0;
-
-    // call the play round function 5 times
-    for (let index = 0; index < 5; index++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        const playerWon = playRound(humanSelection, computerSelection);
-
-        if (playerWon == true) {
-            numHumanScore++;
-        } else if (playerWon == false) {
-            numComputerScore++;
-        };
-
-        console.log("Player score " + numHumanScore);
-        console.log("Computer score " + numComputerScore);
-    };
-
-    // Declares the winner
-    if (numHumanScore > numComputerScore) {
-        console.log("You win!");
-    } else if (numComputerScore > numHumanScore) {
-        console.log("You lose...");
-    } else {
-        console.log("It's a tie...");
-    };
-};
-    
-// playGame();
