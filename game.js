@@ -13,37 +13,27 @@ function getHumanChoice() {
 
 // play round
 function playRound(humanChoice, computerChoice) {
-    console.log("You chose " + humanChoice);
-    console.log("Computer chose " + computerChoice);
     if (humanChoice == "rock" && computerChoice == "scissors") {
-        //console.log("You win! Rock beats scissors!");
         domMessage.textContent = "You win! Rock beats scissors!"
         return true;
     } else if (humanChoice == "rock" && computerChoice == "paper") {
-        //console.log("You lose. Paper beats rock...");
         domMessage.textContent = "You lose. Paper beats rock..."
         return false;
     } else if (humanChoice == "paper" && computerChoice == "rock") {
-        //console.log("You win! Paper beats rock!");
         domMessage.textContent = "You win! Paper beats rock!"
         return true;
     } else if (humanChoice == "paper" && computerChoice == "scissors") {
-        //console.log("You lose. Scissors beat paper...");
         domMessage.textContent = "You lose. Scissors beat paper..."
         return false;
     } else if (humanChoice == "scissors" && computerChoice == "paper") {
-        //console.log("You win! Scissors beat paper!");
         domMessage.textContent = "You win! Scissors beat paper!"
         return true;
     } else if (humanChoice == "scissors" && computerChoice == "rock") {
-        //console.log("You lose. Rock beats scissors...");
         domMessage.textContent = "You lose. Rock beats scissors..."
         return false;
     }  else if (humanChoice == computerChoice) {
-        //console.log("It's a tie!");
         domMessage.textContent = "It's a tie!"
     } else {
-        //console.log("Error! You did not enter a valid option! Please enter 'rock', 'paper' or 'scissors'.")
         domMessage.textContent = "Error! You did not enter a valid option! Please enter 'rock', 'paper' or 'scissors'."
     }
 };
@@ -53,22 +43,38 @@ const domRock = document.getElementById("rock");
 const domPaper = document.getElementById("paper");
 const domScissors = document.getElementById("scissors");
 const domMessage = document.getElementById("message");
+const domPlayerScore = document.getElementById("playerScore");
+const domComputerScore = document.getElementById("computerScore")
 
 // Event listeners
 domRock.addEventListener("click", () => {
-    playRound("rock", getComputerChoice())
+    playGame("rock")
 })
 
 domPaper.addEventListener("click", () => {
-    playRound("paper", getComputerChoice())
+    playGame("paper")
 })
 
 domScissors.addEventListener("click", () => {
-    playRound("scissors", getComputerChoice())
+    playGame("scissors")
 })
 
 // play game
-function playGame() {
+function playGame(userChoice) {
+    const boolPlayerWon = playRound(userChoice, getComputerChoice())
+
+    const intPlayerScore = Number(domPlayerScore.textContent) + 1
+    const intComputerScore = Number(domComputerScore.textContent) + 1 
+
+    if (boolPlayerWon === true) {
+        domPlayerScore.textContent = intPlayerScore
+    } else if (boolPlayerWon === false) {
+        domComputerScore.textContent = intComputerScore
+    }
+}
+
+// play game
+function playGameOld() {
     // keep track of the player's score
     let numHumanScore = 0;
     let numComputerScore = 0;
